@@ -6,10 +6,10 @@ const tokenPath = './token.txt';
 const pageAccessToken = fs.readFileSync(tokenPath, 'utf8').trim();
 
 module.exports = {
-  name: 'pinterest',
-  description: 'Search Pinterest for images.',
-  usage: '-pinterest prompt -number',
-  author: 'coffee',
+  name: 'بنترست',
+  description: 'ابحث عن الصور في بنترست.',
+  usage: 'بنترست: [كلمة] - عدد الصور',
+  author: '𝙸𝙷𝙰𝙱',
 
   async execute(senderId, args) {
     // Ensure args is defined and is an array, default to an empty string if not
@@ -33,7 +33,7 @@ module.exports = {
       const selectedImages = data.data.slice(0, imageCount);
 
       if (selectedImages.length === 0) {
-        await sendMessage(senderId, { text: `No images found for "${searchQuery}".` }, pageAccessToken);
+        await sendMessage(senderId, { text: `لـم يتـم العثـور على صـور لـ "${searchQuery}".` }, pageAccessToken);
         return;
       }
 
@@ -47,8 +47,8 @@ module.exports = {
       }
 
     } catch (error) {
-      console.error('Error:', error);
-      await sendMessage(senderId, { text: 'Error: Could not fetch images.' }, pageAccessToken);
+      console.error('خطأ:', error);
+      await sendMessage(senderId, { text: 'خطأ: تعذر جلب الصور' }, pageAccessToken);
     }
   }
 };
